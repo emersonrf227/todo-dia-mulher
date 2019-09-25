@@ -7,17 +7,18 @@ export default class Main extends React.Component {
 render() {
     const { currentUser } = this.state
 return (
-      <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>     
-        <View style={styles.container}>  
-
-        <Image
-          style={{height:200 , width: 150, marginTop: -30}}
+      <Container style={styles.container}>
+         <Image
+          style={{height:100 , width: 75}}
           source={require('../../assets/logoB.png')}
           resizeMode="contain"
         />
+        <Content />
+
+       
 
 
-      
+        
       <ScrollView style={{width: "100%", height: "58%", marginTop: -10}}> 
 
      
@@ -26,7 +27,13 @@ return (
           <List style={{backgroundColor: "#FFF"}}>
             <ListItem noIndent style={{ backgroundColor: "#cde1f9" }}>
               <Left>
-                <Text>Simon Mignolet</Text>
+                <Text style={{ fontSize: 13 }} > 23/09/2019 {"\n"}{"\n"}
+                <Icon style={{ fontSize: 15 }} type="FontAwesome" name="bell-o" />
+
+                 Lembrete início de tratamento.
+                
+                </Text>
+            
               </Left>
               <Right>
                 <Icon name="arrow-forward" />
@@ -34,7 +41,10 @@ return (
             </ListItem>
             <ListItem >
              <Left>
-                <Text>Nathaniel Clyne</Text>
+                <Text style={{ fontSize: 13 }} > 20/09/2019 {"\n"}{"\n"}
+                <Icon style={{ fontSize: 15 }} type="FontAwesome" name="bell-o" />
+                   Agendamento de consulta.              
+                </Text>            
               </Left>
               <Right>
                 <Icon name="arrow-forward" />
@@ -42,7 +52,10 @@ return (
             </ListItem>
             <ListItem>
               <Left>
-                <Text>Dejan Lovren</Text>
+                <Text style={{ fontSize: 13 }} > 19/09/2019 {"\n"}{"\n"}
+                <Icon style={{ fontSize: 15 }} type="FontAwesome" name="bell-o" />
+                 Você sabia?              
+                </Text> 
               </Left>
               <Right>
                 <Icon name="arrow-forward" />
@@ -50,7 +63,10 @@ return (
             </ListItem>
             <ListItem>
               <Left>
-                <Text>Dejan Lovren</Text>
+                <Text style={{ fontSize: 13 }} > 17/09/2019 {"\n"}{"\n"}
+                <Icon style={{ fontSize: 15 }} type="FontAwesome" name="bell-o" />
+                  Você sabia?              
+                </Text> 
               </Left>
               <Right>
                 <Icon name="arrow-forward" />
@@ -101,10 +117,7 @@ return (
   
         
       </ScrollView> 
-
-              
-    
-        <Footer>
+         <Footer>
         <FooterTab>
             <Button  vertical onPress={() => this.props.navigation.navigate('Main')}>
               <Icon type="FontAwesome" name="home"/>
@@ -115,9 +128,9 @@ return (
               <Icon type="FontAwesome" name="bell-o" />
               <Text style={styles.textFooter}>Alertas</Text>
             </Button>
-            <Button vertical onPress={() => this.props.navigation.navigate('Infor')}>
-              <Icon type="FontAwesome" name="info-circle" />
-              <Text style={styles.textFooter}>Informação</Text>
+            <Button  vertical onPress={() => this.props.navigation.navigate('Infor')}>
+              <Icon type="FontAwesome" name="user" />
+              <Text style={styles.textFooter}>Usuário</Text>
             </Button>
             <Button vertical onPress={() => this.props.navigation.navigate('Logout')}>
               <Icon type="FontAwesome" name="power-off" />
@@ -125,11 +138,12 @@ return (
             </Button>
           </FooterTab>
         </Footer>
-        </View>
-      </SafeAreaView>
-    )
+      </Container>
+       
+    );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
