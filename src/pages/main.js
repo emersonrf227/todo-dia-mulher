@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, SafeAreaView, Image} from 'react-native'
 import { Container, Header, Content, Footer, FooterTab, Button, Icon, Text, Badge, Grid, Col } from 'native-base';
 export default class FooterTabsIconTextExample extends Component {
+
+   static navigationOptions = { header: null }
+
   render() {
     return (
    

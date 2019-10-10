@@ -55,9 +55,9 @@ return (
               <Icon type="FontAwesome" name="bell-o" />
               <Text style={styles.textFooter}>Alertas</Text>
             </Button>
-            <Button active vertical onPress={() => this.props.navigation.navigate('Infor')}>
-              <Icon type="FontAwesome" name="info-circle" />
-              <Text style={styles.textFooter}>Informação</Text>
+             <Button active vertical onPress={() => this.props.navigation.navigate('Infor')}>
+              <Icon type="FontAwesome" name="user" />
+              <Text style={styles.textFooter}>Usuário</Text>
             </Button>
             <Button vertical onPress={() => this.props.navigation.navigate('Logout')}>
               <Icon type="FontAwesome" name="power-off" />
