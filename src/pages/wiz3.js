@@ -14,10 +14,22 @@ import {
   Col,
   Row,
 } from 'native-base';
+import Answer from '../controller/anwescontroller';
 
  
 export default class Wiz3 extends React.Component {
   static navigationOptions = { header: null }
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      value: '',
+      question: 'relacao_sexual'
+    }
+
+    this.save = this.save.bind(this);
+  }
 
   render() {
     return (
@@ -44,7 +56,7 @@ export default class Wiz3 extends React.Component {
           <Col>  
               <Button 
               success
-              onPress={() => this.props.navigation.navigate('Wiz4')}
+              onPress={() => this.save('S')}
               style={styles.buttonLogin}>
               <Text>Sim</Text>
               </Button>
@@ -53,7 +65,7 @@ export default class Wiz3 extends React.Component {
           <Col>
               <Button
                 danger
-                onPress={() => this.props.navigation.navigate('Wiz4')}
+                onPress={() => this.save('N')}
                 style={styles.buttonLogin}>
                 <Text>Não</Text>
               </Button>
@@ -65,6 +77,22 @@ export default class Wiz3 extends React.Component {
 
       </SafeAreaView>
     );
+  }
+
+   save = (value) => {
+
+     var self  =  this;
+     var controller = new Answer();
+     
+     controller.create(value, this.state.question,
+     function(dados){
+       self.props.navigation.navigate('Wiz4')
+
+     },
+     function(error){
+       alert(error)
+     });
+
   }
 }
 const styles = StyleSheet.create({

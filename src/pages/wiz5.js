@@ -11,9 +11,22 @@ import {
   Input,
   DatePicker,
 } from 'native-base';
+import Answer from '../controller/anwescontroller';
 
  
-export default class Wiz5 extends React.Component {
+export default class Wiz2 extends React.Component {
+  static navigationOptions = { header: null }
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      value: '',
+      question: 'Data_ult_papan'
+    }
+
+    this.save = this.save.bind(this);
+  }
   static navigationOptions = { header: null }
 
   render() {
@@ -24,7 +37,7 @@ export default class Wiz5 extends React.Component {
 
 <View style={styles.output}>
       <Text>
-          Agora preciso saber a sua data de nascimento você pode me dizer?
+        Preciso saber mais ou menos em qual data você fez seu último paranicolau?
       </Text>
 
 
@@ -39,25 +52,27 @@ export default class Wiz5 extends React.Component {
         <Item>
         <DatePicker
            full
-            defaultDate={new Date(2000, 4,22)}
-            minimumDate={new Date(1933, 1, 1)}
-            maximumDate={new Date(2014, 12, 31)}
+            defaultDate={new Date(2015, 1,1)}
+            minimumDate={new Date(2000, 1, 1)}
+            maximumDate={new Date(2029, 12, 31)}
             locale={"pt-Br"}
             timeZoneOffsetInMinutes={undefined}
             modalTransparent={true}
             animationType={"slide"}
             androidMode={"default"}
             placeHolderText="Data de nascimento"
-            textStyle={{ color: "write" }}
+           // textStyle={{ color: "write" }}
             placeHolderTextStyle={{ color: "#FFF" }}
-            onDateChange={this.setDate}
+            onDateChange={(date) => {this.setState({value: date})}}
             disabled={false}
             />
         </Item>
+       
+       
         <Button
           full
           success
-          onPress={() => this.props.navigation.navigate('Wiz0')}
+          onPress={ this.save}
           style={styles.buttonLogin}>
           <Text>Proseguir</Text>
         </Button>
@@ -66,6 +81,26 @@ export default class Wiz5 extends React.Component {
       </SafeAreaView>
     );
   }
+  save = () => {
+
+    dia = this.state.value.getDate();
+    mes = this.state.value.getMonth()+1;
+    ano = this.state.value.getFullYear();
+    dataNascimento = dia+'-'+mes+'-'+ano;
+    var self  =  this;
+    var controller = new Answer();
+    
+    controller.create(dataNascimento, this.state.question,
+    function(dados){
+      self.props.navigation.navigate('Wiz6')
+
+    },
+    function(error){
+      alert(error)
+    });
+ }
+
+
 }
 const styles = StyleSheet.create({
   container: {
@@ -98,6 +133,7 @@ const styles = StyleSheet.create({
   width:"100%",
   marginTop: 20,
   position:"relative",
+  alignItems: 'center',
 },
 
 output_before:{

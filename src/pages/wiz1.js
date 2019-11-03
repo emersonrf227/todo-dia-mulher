@@ -10,9 +10,22 @@ import {
   Item,
   Input,
 } from 'native-base';
+import Answer from '../controller/anwescontroller';
 
  
 export default class Wiz1 extends React.Component {
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      nome: '',
+      question: 'Nome'
+    }
+
+
+    this.save = this.save.bind(this);
+  }
   static navigationOptions = { header: null }
 
   render() {
@@ -39,8 +52,8 @@ export default class Wiz1 extends React.Component {
           <Input
             autoCapitalize="none"
             placeholder="Nome Completo"
-           // onChangeText={email => this.setState({ email })}
-          //value={this.state.email}
+            onChangeText={nome => this.setState({ nome })}
+            value={this.state.nome}
           />
         </Item>
 
@@ -51,7 +64,7 @@ export default class Wiz1 extends React.Component {
         <Button
           full
           success
-          onPress={() => this.props.navigation.navigate('Wiz2')}
+          onPress={ this.save}
           style={styles.buttonLogin}>
           <Text>Proseguir</Text>
         </Button>
@@ -60,6 +73,24 @@ export default class Wiz1 extends React.Component {
       </SafeAreaView>
     );
   }
+
+   save = () => {
+     var self  =  this;
+     var controller = new Answer();
+     
+     controller.create(this.state.nome, this.state.question,
+     function(dados){
+       self.props.navigation.navigate('Wiz2')
+
+     },
+     function(error){
+       alert(error)
+     });
+  }
+
+
+
+
 }
 const styles = StyleSheet.create({
   container: {

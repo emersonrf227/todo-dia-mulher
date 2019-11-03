@@ -75,7 +75,7 @@ const AppNavigator = createStackNavigator({
 
 },
 {
-  initialRouteName: 'Login',
+  initialRouteName: 'Wiz0',
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: '#FF69B4',
