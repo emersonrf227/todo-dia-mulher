@@ -18,6 +18,7 @@ export default class Login extends React.Component {
 
 
   state = { email: '', password: '', errorMessage: null };
+
   handleLogin = () => {
     var pattern = /^([\w-]+(?:\.[\w-]+))@((?:[\w-]+\.)\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 
@@ -29,11 +30,6 @@ export default class Login extends React.Component {
       return;
     }
 
-    // if (!regexemail.test(this.state.email)) {
-    //   alert('Email inválido');
-
-    //   return;
-    // }
     if (this.state.password == '') {
       alert('Campo senha vazio');
 
@@ -48,16 +44,30 @@ export default class Login extends React.Component {
       password: this.state.password,
     };
 
-    user.login(
+try{
+  user.login(
       model,
       function(dados) {
-        self.props.navigation.navigate('Wiz0');
+        
+        user.returnData(function(error){
+            alert(JSON.stringify(error));
+        },function(success){
+           if(success =='F')  self.props.navigation.navigate('Main');
+           else  self.props.navigation.navigate('Wiz0');
+
+        });
+       
       },
       function(error) {
-        console.log(error);
+        alert(JSON.stringify(error));
       }
     );
-  };
+
+    }catch (e) {
+      alert(e.message)
+    }
+    
+  }
   render() {
     return (
       <SafeAreaView style={styles.container}>

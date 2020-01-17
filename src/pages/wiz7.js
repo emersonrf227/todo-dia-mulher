@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, SafeAreaView, Image } from 'react-native';
+import { StyleSheet, TextInput, View, SafeAreaView, Image, } from 'react-native';
 import {
   Container,
   Header,
@@ -16,18 +16,16 @@ import {
 } from 'native-base';
 import Answer from '../controller/anwescontroller';
 
-
  
 export default class Wiz3 extends React.Component {
   static navigationOptions = { header: null }
 
-  
   constructor(props){
     super(props);
 
     this.state = {
       value: '',
-      question: 'papa_nicolau'
+      question: 'Vac_Hpv'
     }
 
     this.save = this.save.bind(this);
@@ -41,14 +39,13 @@ export default class Wiz3 extends React.Component {
 
 <View style={styles.output}>
       <Text>
-          Você já fez o exame de papanicolau?{"\n"}
+          Você já tomou a vacina contra HPV?
       </Text>
 
 <Text style={{color: 'blue'}}
-       onPress={() => this.props.navigation.navigate('Imppapa')}>
+       onPress={() => this.props.navigation.navigate('Imphpv')}>
   Saiba mais.
 </Text>
-
 
 
 </View>
@@ -87,20 +84,14 @@ export default class Wiz3 extends React.Component {
     );
   }
 
-    save = (value) => {
+   save = (value) => {
 
      var self  =  this;
      var controller = new Answer();
      
      controller.create(value, this.state.question,
      function(dados){
-
-      if(value == "S"){
-       self.props.navigation.navigate('Wiz5')
-      }else{
-
-        self.props.navigation.navigate('Wiz7')
-      }
+       self.props.navigation.navigate('Main')
 
      },
      function(error){
@@ -130,6 +121,14 @@ const styles = StyleSheet.create({
 
   buttonLogin: {
     marginTop: 40,
+    color: "#FFF",
+
+  },
+
+  buttonPoup: {
+    marginTop: 2,
+    
+    color: '#000',
   },
 
   output:{ 

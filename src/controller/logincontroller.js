@@ -8,7 +8,7 @@ export default class Login{
         .auth()
         .signInWithEmailAndPassword(value.email, value.password)
         .then(() => next(true))
-        .catch(error => errorcode(error.message))
+        .catch(error =>  alert(error.message))
     }
 
 
@@ -18,5 +18,23 @@ export default class Login{
         .createUserWithEmailAndPassword(value.email, value.password)
         .then(() => next(true))
         .catch(error => errorcode(error.message))
+    }
+
+    returnData(error, next){
+
+            var user = firebase.auth().currentUser;
+            var uid = user.uid;
+
+            var data = firebase.database();
+
+            data.ref(uid).ref.child("Quiz").on("value", function(snapshot) {
+                  snapshot.forEach(function(data) {
+                      next(data.val());
+
+                });
+            });
+
+            next(error);
+   
     }
 }

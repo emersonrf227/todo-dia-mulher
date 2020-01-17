@@ -17,7 +17,7 @@ export default class SignUp extends React.Component {
 
   state = { email: '', password: '', passwordconf: '', errorMessage: null };
   handleSignUp = () => {
-    var pattern =  /^([\w-]+(?:\.[\w-]+))@((?:[\w-]+\.)\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+    var pattern =  /^[a-zA-Z0-9][a-zA-Z0-9\._-]+@([a-zA-Z0-9\._-]+\.)[a-zA-Z-0-9]{2}/;
     var self = this;
 
     var regexemail = new RegExp(pattern);
@@ -65,7 +65,7 @@ export default class SignUp extends React.Component {
         self.props.navigation.navigate('Login')
       },
       function(error) {
-        alert('Error');
+        alert(error);
       }
     );
   };

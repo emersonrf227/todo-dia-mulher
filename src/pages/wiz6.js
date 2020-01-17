@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, SafeAreaView, Image } from 'react-native';
+import { StyleSheet, TextInput, View, SafeAreaView, Image, ScrollView } from 'react-native';
 import {
   Container,
   Header,
@@ -27,7 +27,7 @@ export default class Wiz3 extends React.Component {
 
     this.state = {
       value: '',
-      question: 'papa_nicolau'
+      question: 'Result_papa'
     }
 
     this.save = this.save.bind(this);
@@ -41,8 +41,7 @@ export default class Wiz3 extends React.Component {
 
 <View style={styles.output}>
       <Text>
-          Você já fez o exame de papanicolau?{"\n"}
-          Clique aqui para saber a importancia.
+          Qual foi o resultado do seu último exame?{"\n"} 
       </Text>
 
 
@@ -55,25 +54,49 @@ export default class Wiz3 extends React.Component {
         />
 
 
-        <Grid>
-          <Col>  
+   
+          
+<Container  style={{ backgroundColor: '#FF69B4' }}>
+
+  <ScrollView>  
               <Button 
               success
-              onPress={() => this.save('S')}
+              onPress={() => this.save('NG')}
               style={styles.buttonLogin}>
-              <Text>Sim</Text>
+              <Text>(A)- Negativo para câncer</Text>
               </Button>
-          </Col>
-
-          <Col>
+        
+         
               <Button
-                danger
-                onPress={() => this.save('N')}
+                success
+                onPress={() => this.save('INH')}
                 style={styles.buttonLogin}>
-                <Text>Não</Text>
+                <Text>(B) - Infecção pelo HPV </Text>
               </Button>
-          </Col>
-        </Grid>
+
+              <Button
+                success
+                onPress={() => this.save('LBG')}
+                style={styles.buttonLogin}>
+                <Text>(C) - Lesão de baixo grau</Text>
+              </Button>
+
+
+              <Button
+                success
+                onPress={() => this.save('LAG')}
+                style={styles.buttonLogin}>
+                <Text>(D) - Lesão de auto grau</Text>
+              </Button>
+
+              <Button
+                success
+                onPress={() => this.save('LAG')}
+                style={styles.buttonLogin}>
+                <Text>(E) - Amostra intisfatória</Text>
+              </Button>   
+      </ScrollView>            
+    </Container>   
   
       
       
@@ -89,7 +112,7 @@ export default class Wiz3 extends React.Component {
      
      controller.create(value, this.state.question,
      function(dados){
-       self.props.navigation.navigate('Wiz5')
+       self.props.navigation.navigate('Wiz7')
 
      },
      function(error){
@@ -118,7 +141,7 @@ const styles = StyleSheet.create({
 
 
   buttonLogin: {
-    marginTop: 40,
+    marginTop: 5,
   },
 
   output:{ 

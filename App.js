@@ -14,6 +14,10 @@ import Wiz2 from './src/pages/wiz2'
 import Wiz3 from './src/pages/wiz3'
 import Wiz4 from './src/pages/wiz4'
 import Wiz5 from './src/pages/wiz5'
+import Wiz6 from './src/pages/wiz6'
+import Wiz7 from './src/pages/wiz7'
+import Imphpv from './src/pages/imphpv'
+import Imppapa from './src/pages/imppapa'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
@@ -57,6 +61,18 @@ const AppNavigator = createStackNavigator({
   Wiz5: {
     screen: Wiz5,
   },
+  Wiz6: {
+    screen: Wiz6,
+  },
+  Wiz7: {
+    screen: Wiz7,
+  },
+  Imphpv: {
+    screen: Imphpv,
+  },
+  Imppapa: {
+    screen: Imppapa,
+  },
   SignUp: {
     screen: SignUp,
   },
@@ -75,7 +91,7 @@ const AppNavigator = createStackNavigator({
 
 },
 {
-  initialRouteName: 'Wiz0',
+  initialRouteName: 'Login',
   defaultNavigationOptions: {
     headerStyle: {
       backgroundColor: '#FF69B4',

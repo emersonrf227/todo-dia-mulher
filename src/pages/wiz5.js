@@ -60,7 +60,7 @@ export default class Wiz2 extends React.Component {
             modalTransparent={true}
             animationType={"slide"}
             androidMode={"default"}
-            placeHolderText="Data de nascimento"
+            placeHolderText="Data do último exame"
            // textStyle={{ color: "write" }}
             placeHolderTextStyle={{ color: "#FFF" }}
             onDateChange={(date) => {this.setState({value: date})}}
