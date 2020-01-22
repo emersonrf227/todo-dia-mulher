@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TextInput, View, SafeAreaView, Image } from 'react-native';
+import firebase from 'firebase'
 import {
   Container,
   Header,
@@ -12,8 +13,39 @@ import {
 } from 'native-base';
 import User from '../controller/logincontroller';
 
+
 export default class Login extends React.Component {
 
+  constructor(props) {
+    super(props);
+   
+  }
+
+
+  componentDidMount() {
+   
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+
+        var user = firebase.auth().currentUser;
+        var uid = user.uid;
+
+        var data = firebase.database();
+
+        data.ref(uid).ref.child("Quiz").on("value", function(snapshot) {
+              snapshot.forEach(function(data) {
+              //  this.props.navigation.navigate('SignUp')
+
+            });
+        });
+
+      } else {
+       return;
+      }
+    });
+ 
+  }
+  
    static navigationOptions = { header: null }
 
 

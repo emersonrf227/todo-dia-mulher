@@ -1,56 +1,70 @@
 import React, { Component } from 'react';
-import { StyleSheet, TextInput, View, SafeAreaView, Image} from 'react-native'
-import { Container, Header, Content, Button, Text, Form, Item, Input,  Footer, FooterTab, Icon, Badge } from 'native-base';
+import { StyleSheet, TextInput, View, SafeAreaView, Image } from 'react-native'
+import { Container, Header, Content, Button, Text, Form, Item, Input, Footer, FooterTab, Icon, Badge } from 'native-base';
 import { Col, Row, Grid } from 'react-native-easy-grid';
+import firebase from 'firebase'
 export default class Main extends React.Component {
+  constructor(props) {
+    super(props);
+   
+  }
+
   state = { currentUser: null }
-render() {
+
+  Logout = () => {
+
+    firebase.auth().signOut().then(function() {
+
+      console.log('Sair')
+      this.props.navigation.navigate('SignUp')
+    }).catch(function(error) {
+      // An error happened.
+    });
+
+    
+  }
+
+
+
+
+
+
+
+
+
+
+
+  render() {
     const { currentUser } = this.state
-return (
-      <SafeAreaView style={styles.container}>     
+    return (
+      <SafeAreaView style={styles.container}>
 
         <Image
-          style={{height:200 , width: 150, marginTop: -30}}
+          style={{ height: 200, width: 150, marginTop: -30 }}
           source={require('../../assets/logoB.png')}
           resizeMode="contain"
         />
 
 
-        
-        <Grid>
-          <Col style={styles.styleCol}>
+        <Button
+          danger
+          onPress={this.handleLogin}
+          style={styles.buttonSair}
+          onPress={this.Logout}
+          
+          
+          >
+          <Text><Icon style={styles.iconSair} type="FontAwesome" name="sign-out" /> Sair</Text>
+        </Button>
 
-
-          </Col>
-
-
-          <Col style={styles.styleCol}>
-
-
-          </Col>
-        </Grid>
-
-
-        <Grid style={styles.styleGrid2}>
-        <Col style={styles.styleCol}>
-
-
-          </Col>
-          <Col style={styles.styleCol}>
-
-
-          </Col>
-        </Grid>
-
-              
         <Content />
         <Footer>
-        <FooterTab>
-            <Button  vertical onPress={() => this.props.navigation.navigate('Main')}>
-              <Icon type="FontAwesome" name="home"/>
+          <FooterTab>
+            <Button vertical onPress={() => this.props.navigation.navigate('Main')}>
+              <Icon type="FontAwesome" name="home" />
               <Text style={styles.textFooter}> Home </Text>
             </Button>
-            <Button  badge vertical onPress={() => this.props.navigation.navigate('Alerts')}>
+            {/* <Button  badge vertical onPress={() => this.props.navigation.navigate('Alerts')}>
             <Badge ><Text>10</Text></Badge>
               <Icon type="FontAwesome" name="bell-o" />
               <Text style={styles.textFooter}>Alertas</Text>
@@ -58,14 +72,14 @@ return (
             <Button active vertical onPress={() => this.props.navigation.navigate('Infor')}>
               <Icon type="FontAwesome" name="user" />
               <Text style={styles.textFooter}>Usuário</Text>
-            </Button>
-            <Button  active vertical onPress={() => this.props.navigation.navigate('Logout')}>
+            </Button> */}
+            <Button active vertical onPress={() => this.props.navigation.navigate('Logout')}>
               <Icon type="FontAwesome" name="power-off" />
               <Text style={styles.textFooter}>Sair</Text>
             </Button>
           </FooterTab>
         </Footer>
-     
+
       </SafeAreaView>
     )
   }
@@ -76,7 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FF69B4',
-   
+
 
   },
 
@@ -84,29 +98,39 @@ const styles = StyleSheet.create({
 
 
   textFooter: {
- fontSize: 8,
+    fontSize: 8,
 
   },
 
   styleGrid: {
     margin: 10,
-     },
+  },
+
+  buttonSair: {
+    marginTop: 40,
+    color: "#FFF",
+  },
+
+  iconSair: {
+    color: "#FFF",
+    fontSize: 14,
+  },
 
 
   styleGrid2: {
-      marginTop: 20
+    marginTop: 20
   },
 
   styleCol: {
-   marginRight: 10,
-   marginLeft: 10,
-   backgroundColor: '#FFF', 
-   height: 100
-},
-
-  
+    marginRight: 10,
+    marginLeft: 10,
+    backgroundColor: '#FFF',
+    height: 100
+  },
 
 
 
-  
+
+
+
 })
