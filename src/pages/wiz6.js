@@ -91,7 +91,7 @@ export default class Wiz3 extends React.Component {
 
               <Button
                 success
-                onPress={() => this.save('LAG')}
+                onPress={() => this.save('AI')}
                 style={styles.buttonLogin}>
                 <Text>(E) - Amostra intisfatória</Text>
               </Button>   
